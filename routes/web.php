@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'artikel'], function() {
+    
+    Route::get('/','ArtikelController@ArtikelHome')->name('artikel-home');
+
+    Route::get('/{id_artikel}/{id_user}/delete','ArtikelController@ArtikelDelete')->name('delete-artikel');
+
+    Route::post('/insert','ArtikelController@ArtikelInsert')->name('artikel-insert');
+
+});
+
